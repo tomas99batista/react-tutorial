@@ -1,11 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import classes from "./EventsList.module.css";
 
 function EventsList() {
   const data = useLoaderData();
-  if (data.isError) {
-    return <p>{data.message}</p>;
-  }
+  // if (data.isError) {
+  //   return <p>{data.message}</p>;
+  // }
   const events = data.events;
 
   return (
@@ -14,13 +14,13 @@ function EventsList() {
       <ul className={classes.list}>
         {events.map((event) => (
           <li key={event.id} className={classes.item}>
-            <a href="...">
+            <Link to={event.id}>
               <img src={event.image} alt={event.title} />
               <div className={classes.content}>
                 <h2>{event.title}</h2>
                 <time>{event.date}</time>
               </div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
