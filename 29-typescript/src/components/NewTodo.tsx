@@ -1,6 +1,6 @@
-import { FormEvent, useRef } from "react";
+import { FC, FormEvent, useRef } from "react";
 
-export const NewTodo = () => {
+export const NewTodo: FC<{ onAddTodo: (text: string) => void }> = (props) => {
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = (event: FormEvent) => {
@@ -12,6 +12,8 @@ export const NewTodo = () => {
       // throw an error
       return;
     }
+
+    props.onAddTodo(enteredText);
   };
 
   return (
